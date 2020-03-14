@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module org.jetbrains.idea.maven.project.MavenProjectsManager.isMavenModule="true" type="JAVA_MODULE" version="4">
+  <component name="FacetManager">
+    <facet type="Osmorc" name="OSGi">
+      <configuration manifestGenerationMode="OsmorcControlled" manifestLocation="" jarfileLocation="sling-book-library-bundle-1.0.jar" outputPathType="CompilerOutputPath" bndFileLocation="" bundlorFileLocation="" bundleActivator="" bundleSymbolicName="sling-book-library-bundle" bundleVersion="1.0.0" ignoreFilePattern="" useProjectDefaultManifestFileLocation="true" alwaysRebuildBundleJAR="false" doNotSynchronizeWithMaven="false">
+        <additionalProperties>
+          <property key="Bundle-Description" value="Sling Book Library Bundle" />
+          <property key="Sling-Model-Packages" value="org.jkan997.booklibrary.htl" />
+          <property key="Import-Package" value="javax.inject;version=0.0.0,*" />
+          <property key="Export-Package" value="org.jkan997.booklibrary.htl" />
+          <property key="Bundle-Name" value="sling-book-library-bundle" />
+          <property key="Include-Resource" value="nonfiction.csv=$MODULE_DIR$/src/main/resources/nonfiction.csv,booklist.html=$MODULE_DIR$/src/main/resources/booklist.html,fiction.csv=$MODULE_DIR$/src/main/resources/fiction.csv" />
+        </additionalProperties>
+        <additionalJARContents />
+      </configuration>
+    </facet>
+  </component>
+  <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_7">
+    <output url="file://$MODULE_DIR$/target/classes" />
+    <output-test url="file://$MODULE_DIR$/target/test-classes" />
+    <content url="file://$MODULE_DIR$">
+      <sourceFolder url="file://$MODULE_DIR$/src/main/java" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/src/main/resources" type="java-resource" />
+      <excludeFolder url="file://$MODULE_DIR$/target" />
+    </content>
+    <orderEntry type="inheritedJdk" />
+    <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="Maven: javax.servlet:servlet-api:2.5" level="project" />
+    <orderEntry type="library" name="Maven: javax.jcr:jcr:2.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.sling:org.apache.sling.scripting.sightly:1.0.2" level="project" />
+    <orderEntry type="library" name="Maven: org.antlr:antlr4-runtime:4.1" level="project" />
+    <orderEntry type="library" name="Maven: org.abego.treelayout:org.abego.treelayout.core:1.0.1" level="project" />
+    <orderEntry type="library" scope="PROVIDED" name="Maven: org.osgi:org.osgi.service.component.annotations:1.3.0" level="project" />
+    <orderEntry type="library" name="Maven: org.osgi:org.osgi.service.metatype.annotations:1.3.0" level="project" />
+    <orderEntry type="library" name="Maven: org.slf4j:slf4j-api:1.7.24" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.sling:org.apache.sling.api:2.3.0" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.sling:org.apache.sling.jcr.api:2.3.0" level="project" />
+    <orderEntry type="library" name="Maven: com.google.code.gson:gson:2.3.1" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.sling:org.apache.sling.models.api:1.3.6" level="project" />
+    <orderEntry type="library" name="Maven: org.apache.sling:org.apache.sling.commons.osgi:2.1.0" level="project" />
+  </component>
+</module>
