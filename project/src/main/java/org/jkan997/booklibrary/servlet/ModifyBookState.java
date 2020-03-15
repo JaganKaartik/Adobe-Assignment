@@ -54,6 +54,15 @@ public class ModifyBookState extends SlingSafeMethodsServlet {
         try{
             PrintWriter wrt = response.getWriter();
             JsonWriter writer = new JsonWriter(wrt);
+            String person;
+            try{
+                person = request.getParameter("person");
+            }
+            catch(Exception e)
+            {
+                person = "";
+            }
+
             System.out.println("helo");
             String extension = request.getRequestPathInfo().getExtension();
             System.out.println(extension);
@@ -80,7 +89,7 @@ public class ModifyBookState extends SlingSafeMethodsServlet {
                     String v = dateTimeInGMT.format(new Date());
                     node.setProperty("reserved",v);
                     writer.beginObject();
-                    writer.name("Operation Successfull").value("Reserved Book"+title);
+                    writer.name("Operation Successfull").value(person+" Has Reserved the Book titled : "+title);
                     writer.endObject();
                 }
                 else if(extension.equals("unreserve"))

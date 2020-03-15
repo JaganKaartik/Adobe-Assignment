@@ -16,4 +16,8 @@ public class BooklistModel {
     /*
         YOUR HTL MODEL HERE HERE
      */
+
+     public String getHelloWorld() {
+         return "Hello World";
+     }
 }
