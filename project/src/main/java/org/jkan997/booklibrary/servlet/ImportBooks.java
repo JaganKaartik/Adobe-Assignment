@@ -87,7 +87,7 @@ public class ImportBooks extends SlingSafeMethodsServlet {
             Session jcrSession = repository.loginAdministrative(null);
             Node rootNode = jcrSession.getRootNode();
             Node appsNode = rootNode.getNode("apps");
-            createApps(appsNode);
+            createApps(appsNode); 
             Node booksNode;
             if (rootNode.hasNode("books")) {
                 booksNode = rootNode.getNode("book s");

@@ -18,8 +18,6 @@ import org.osgi.service.component.annotations.Activate;
 import org.osgi.service.component.annotations.Reference;
 import org.apache.sling.api.SlingHttpServletRequest;
 import org.apache.sling.api.SlingHttpServletResponse;
-import org.apache.sling.api.resource.Resource;
-import org.apache.sling.api.resource.ValueMap;
 import org.apache.sling.api.servlets.HttpConstants;
 import org.apache.sling.api.servlets.SlingSafeMethodsServlet;
 import org.apache.sling.jcr.api.SlingRepository;
@@ -43,9 +41,6 @@ public class ListBooks extends SlingSafeMethodsServlet {
 
     @Override
     protected void doGet(SlingHttpServletRequest request, SlingHttpServletResponse response) {
-        /*
-        YOUR IMPLEMENTATION HERE
-         */
         try{
             PrintWriter wrt = response.getWriter();
             String author = request.getParameter("author");
@@ -55,8 +50,7 @@ public class ListBooks extends SlingSafeMethodsServlet {
             javax.jcr.query.QueryManager queryManager= jcrSession.getWorkspace().getQueryManager();
             javax.jcr.query.Query query = queryManager.createQuery(queryString,"JCR-SQL2");
             javax.jcr.query.QueryResult result = query.execute();
-            javax.jcr.NodeIterator nodeIter = result.getNodes();
-            long mySize = nodeIter.getSize();            
+            javax.jcr.NodeIterator nodeIter = result.getNodes();         
             JsonWriter writer = new JsonWriter(wrt);
             List<Book> booklist = new ArrayList<Book>();
             while ( nodeIter.hasNext() ) 
