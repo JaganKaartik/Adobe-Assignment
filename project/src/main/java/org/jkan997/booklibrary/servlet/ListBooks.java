@@ -27,6 +27,7 @@ import org.slf4j.LoggerFactory;
     "sling.servlet.methods=" + HttpConstants.METHOD_GET,
     "sling.servlet.paths=" + "/bin/ListBooks"
 })
+
 public class ListBooks extends SlingSafeMethodsServlet {
 
     private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(ListBooks.class);

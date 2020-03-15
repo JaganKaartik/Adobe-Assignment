@@ -4,14 +4,13 @@ import org.jkan997.booklibrary.models.Book;
 import java.util.Map;
 
 import javax.jcr.Node;
+import javax.jcr.NodeIterator;
 import javax.jcr.Session;
 import javax.jcr.Value;
 import javax.lang.model.type.NullType;
 import javax.lang.model.util.ElementScanner6;
 import javax.servlet.Servlet;
-
 import com.google.gson.stream.JsonWriter;
-
 import java.io.PrintWriter;
 import java.lang.String;
 import org.osgi.service.component.annotations.Component;
@@ -28,7 +27,7 @@ import org.slf4j.LoggerFactory;
 import org.apache.sling.api.servlets.HttpConstants;
 import java.util.Date;
 import java.text.SimpleDateFormat;
-import java.util.TimeZone;
+import javax.jcr.query.*;
 
 @Component(service = Servlet.class, property = { "sling.servlet.methods=" + HttpConstants.METHOD_GET,
         "sling.servlet.paths=" + "/books/fiction/", "sling.servlet.paths=" + "/books/nonfiction/",
@@ -64,13 +63,12 @@ public class ModifyBookState extends SlingSafeMethodsServlet {
             Session jcrSession = repository.loginAdministrative(null);
             String queryString = "select * from [nt:unstructured] as p where isdescendantnode (p, [/books]) AND (p.title = '"+title+"')";
             System.out.println(queryString);
-            javax.jcr.query.QueryManager queryManager= jcrSession.getWorkspace().getQueryManager();
-            javax.jcr.query.Query query = queryManager.createQuery(queryString,"JCR-SQL2");
-            javax.jcr.query.QueryResult result = query.execute();
-            javax.jcr.NodeIterator nodeIter = result.getNodes();
+            QueryManager queryManager= jcrSession.getWorkspace().getQueryManager();
+            Query query = queryManager.createQuery(queryString,"JCR-SQL2");
+            QueryResult result = query.execute();
+            NodeIterator nodeIter = result.getNodes();
 
             SimpleDateFormat dateTimeInGMT = new SimpleDateFormat("yyyy-MMM-dd hh:mm:ss aa");
-	        dateTimeInGMT.setTimeZone(TimeZone.getTimeZone("GMT"));
             dateTimeInGMT.format(new Date());
     
             while(nodeIter.hasNext())
@@ -80,7 +78,6 @@ public class ModifyBookState extends SlingSafeMethodsServlet {
                 if(extension.equals("reserve"))                                                               
                 {
                     String v = dateTimeInGMT.format(new Date());
-                    System.out.println(v);
                     node.setProperty("reserved",v);
                     writer.beginObject();
                     writer.name("Operation Successfull").value("Reserved Book"+title);
@@ -89,7 +86,6 @@ public class ModifyBookState extends SlingSafeMethodsServlet {
                 else if(extension.equals("unreserve"))
                 {
                     Value v = NullLiteral;
-                    System.out.println(v);
                     node.setProperty("reserved",v);
                     writer.beginObject();
                     writer.name("Operation Successfull").value("Unreserved Book"+title);

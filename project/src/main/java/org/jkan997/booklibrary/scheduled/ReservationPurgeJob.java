@@ -2,7 +2,6 @@ package org.jkan997.booklibrary.scheduled;
 
 import javax.jcr.Session;
 import javax.jcr.Value;
-
 import com.google.gson.stream.JsonWriter;
 import java.util.concurrent.TimeUnit;
 import org.apache.sling.jcr.api.SlingRepository;
