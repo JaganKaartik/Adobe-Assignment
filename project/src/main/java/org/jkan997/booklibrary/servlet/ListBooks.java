@@ -6,11 +6,11 @@ import java.util.List;
 import java.util.Map;
 import javax.servlet.Servlet;
 import javax.jcr.Node;
+import javax.jcr.NodeIterator;
 import javax.jcr.Property;
-import javax.jcr.PropertyIterator;
 import javax.jcr.Session;
 import javax.jcr.Value;
-import javax.jcr.query.qom.Length;
+import javax.jcr.query.*;
 import org.jkan997.booklibrary.models.Book;
 import com.google.gson.stream.JsonWriter;
 import org.osgi.service.component.annotations.Component;
@@ -47,15 +47,15 @@ public class ListBooks extends SlingSafeMethodsServlet {
             String title = request.getParameter("title");
             Session jcrSession = repository.loginAdministrative(null);
             String queryString = "select * from [nt:unstructured] as p where isdescendantnode (p, [/books]) AND (p.title LIKE '"+title+"%' AND p.author LIKE'%"+author+"%')";
-            javax.jcr.query.QueryManager queryManager= jcrSession.getWorkspace().getQueryManager();
-            javax.jcr.query.Query query = queryManager.createQuery(queryString,"JCR-SQL2");
-            javax.jcr.query.QueryResult result = query.execute();
-            javax.jcr.NodeIterator nodeIter = result.getNodes();         
+            QueryManager queryManager= jcrSession.getWorkspace().getQueryManager();
+            Query query = queryManager.createQuery(queryString,"JCR-SQL2");
+            QueryResult result = query.execute();
+            NodeIterator nodeIter = result.getNodes();         
             JsonWriter writer = new JsonWriter(wrt);
             List<Book> booklist = new ArrayList<Book>();
             while ( nodeIter.hasNext() ) 
             {
-                javax.jcr.Node node = nodeIter.nextNode();
+                Node node = nodeIter.nextNode();
                 Property property = node.getProperty("author");     
                 Value authorFromDB = property.getValue();
                 property = node.getProperty("title");     
@@ -103,5 +103,4 @@ public class ListBooks extends SlingSafeMethodsServlet {
         }
         throw new RuntimeException("" + getClass().getCanonicalName() + " not implemented yet.");
     }
-
 }
