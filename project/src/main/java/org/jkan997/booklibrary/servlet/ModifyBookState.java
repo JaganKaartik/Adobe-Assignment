@@ -54,7 +54,14 @@ public class ModifyBookState extends SlingSafeMethodsServlet {
         try{
             PrintWriter wrt = response.getWriter();
             JsonWriter writer = new JsonWriter(wrt);
-            
+            String person;
+            try{
+                person = request.getParameter("person");
+            }
+            catch(Exception e)
+            {
+                person = "";
+            }
 
             System.out.println("helo");
             String extension = request.getRequestPathInfo().getExtension();
@@ -79,14 +86,6 @@ public class ModifyBookState extends SlingSafeMethodsServlet {
                 System.out.println(node);
                 if(extension.equals("reserve"))                                                               
                 {
-                    String person;
-                    try{
-                        person = request.getParameter("person");
-                    }
-                    catch(Exception e)
-                    {
-                        person = "";
-                    }       
                     String v = dateTimeInGMT.format(new Date());
                     node.setProperty("reserved",v);
                     writer.beginObject();
